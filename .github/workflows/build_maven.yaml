@@ -1,10 +1,12 @@
 name: Build-Maven
 on:
+  workflow_call:
   push:
     paths:
       - '.github/workflows/build_maven.yaml'
     branches:
       - master
+      - main
       - develop
       - candidate
 
