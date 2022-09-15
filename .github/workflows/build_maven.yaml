@@ -1,0 +1,34 @@
+name: Build-Maven
+on:
+  push:
+    paths:
+      - '.github/workflows/build_maven.yaml'
+    branches:
+      - master
+      - develop
+      - candidate
+
+jobs:
+  build_maven:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup JAVA
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        cache: 'maven'
+
+    - name: Build with Maven
+      run: mvn install
+
+    - name: list dir's
+      run: |
+          ls -lah
+
+    - name: list .m2 dir
+      run: |
+          ls ~/.m2/repository
